@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Proxy</title>
+</head>
+<body>
+    <input type="text" id="url" placeholder="https://example.com" style="width:300px">
+    <button onclick="fetchViaProxy()">برو</button>
+    <pre id="output"></pre>
+
+    <script>
+        async function fetchViaProxy() {
+            const targetUrl = document.getElementById('url').value;
+            const output = document.getElementById('output');
+            output.innerText = "در حال ارسال درخواست...";
+            
+            try {
+                const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`);
+                const data = await response.json();
+                output.innerText = data.contents;
+            } catch(err) {
+                output.innerText = "خطا: " + err.message;
+            }
+        }
+    </script>
+</body>
+</html>
