@@ -1,0 +1,15 @@
+name: Send Request to External Site
+
+on:
+  push:  # هر بار که کد جدیدی به مخزنت "push" کنی، اجرا میشه
+  workflow_dispatch:  # یه دکمه برای اجرای دستی هم اضافه میکنه (توی برگه Actions)
+
+jobs:
+  request-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send HTTP Request
+        uses: fjogeleit/http-request-action@v1  # ابزار انجام درخواست
+        with:
+          url: 'https://www.microsoft.com'  # 🔁 آدرس سایت موردنظرت رو اینجا عوض کن
+          method: 'GET'
